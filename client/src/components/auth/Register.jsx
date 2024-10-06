@@ -19,7 +19,7 @@ const Register = () => {
 
     if (password !== confirmPassword) {
       toast.error("Passwords do not match");
-      return; // Stops further execution
+      return; 
     }
 
     try {

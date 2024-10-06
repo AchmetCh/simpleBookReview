@@ -16,27 +16,18 @@ const Home = () => {
 
   return (
     <>
-      
-      <Container className="w-100 border border-1 border-solid border-primary">
-      <h1>Book Reviews</h1>
-        <Row className="gx-2 gy-2">
+       <Container style={{ width: '75%' }}>
+        <h1>Book Reviews</h1>
+        <Row className="g-3">
           {reviews.map((review) => (
-            <Col
-              key={review._id}
-              xs={12} sm={6} md={4} lg={3}
-              
-            >
-              <Card style={{ width: "18rem" }} className='mr-5 p-3'>
+            <Col key={review._id} xs={12} sm={6} md={4} lg={3}>
+              <Card className="h-100">
                 <Card.Img variant="top" src={review.image} />
-                <Card.Body>
-                  <Card.Title className="fw-bold">
-                    TItle: {review.title}
-                  </Card.Title>
+                <Card.Body className="d-flex flex-column h-100">
+                  <Card.Title className="fw-bold">Title: {review.title}</Card.Title>
                   <Card.Text>Author: {review.author}</Card.Text>
                   <Card.Text
-                    className={
-                      review.rating === 5 ? "text-success" : "text-danger"
-                    }
+                    className={review.rating === 5 ? "text-success" : "text-danger"}
                   >
                     Rating: {review.rating}
                   </Card.Text>
@@ -50,9 +41,11 @@ const Home = () => {
                   >
                     Review: {review.reviewText}
                   </Card.Text>
-                  <Link to={`/book/bookbyid/${review._id}`}>
-                  <Button variant="primary">Read More</Button>
-                  </Link>
+                  <div className="mt-auto">
+                    <Link to={`/book/bookbyid/${review._id}`}>
+                      <Button variant="primary">Read More</Button>
+                    </Link>
+                  </div>
                 </Card.Body>
               </Card>
             </Col>

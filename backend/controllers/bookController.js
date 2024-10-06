@@ -47,7 +47,6 @@ exports.createBook = async (req, res) => {
 exports.UserReviews = async (req, res) => {
   try {
     const userId = req.params.userId;
-    console.log(userId)
     const userReviews = await Book.find({ user: userId });
 
     if (!userReviews.length) {
@@ -66,6 +65,7 @@ exports.UserReviews = async (req, res) => {
 exports.editReview = async (req, res) => {
   try {
     const bookId = req.params.bookId;
+    console.log(bookId)
     const { title, author, reviewText, rating } = req.body;
     const book = await Book.findByIdAndUpdate(
       bookId,

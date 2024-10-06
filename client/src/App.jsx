@@ -20,15 +20,20 @@ function App() {
       {token ? (
         <>
           <Routes>
-            <Route path="/book/userreviews/:userId" element={<UserReviews />} />
+            <Route
+              path="/book/userreviews/:userId"
+              element={<UserReviews token={token} />}
+            />
             <Route
               path="/user/update-profile/:userId"
-              element={<UpdateProfile />}
+              element={<UpdateProfile token={token}/>}
             />
             <Route path="/book/newbook" element={<NewBookReviewForm />} />
             <Route
-              path="/book/editreview/:reviewId" element={<EditUserReview />}
+              path="/book/editreview/:id"
+              element={<EditUserReview />}
             />
+                
           </Routes>
         </>
       ) : (
