@@ -47,7 +47,6 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/book/bookbyid/:id" element={<GetBookById />} />
-        <Route path="*" element={<Navigate to="/" />} />
       </Routes>
     </>
   );
