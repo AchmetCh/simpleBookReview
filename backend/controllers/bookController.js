@@ -97,16 +97,5 @@ exports.deleteReview = async (req, res) => {
   }
 };
 
-// Search with title
-exports.searchBook = async (req, res) => {
-    try {
-      const title = req.params.title;
-      const book = await Book.findOne({ title: new RegExp(title, 'i') }); // Use regex for case-insensitive search
-      if (!book)
-        return res.status(404).json({ message: "No book found with this title." });
-      res.json(book);
-    } catch (error) {
-      res.status(500).json({ message: error.message });
-    }
-  };
+
   

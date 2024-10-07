@@ -1,6 +1,6 @@
 import "./App.css";
 import React, { useState } from "react";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import Home from "./components/pages/Home";
 import GetBookById from "./components/book/GetBookById";
 import Header from "./components/pages/Header";
@@ -47,6 +47,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/book/bookbyid/:id" element={<GetBookById />} />
+        <Route path="*" element={<Navigate to="/" />} />
       </Routes>
     </>
   );
