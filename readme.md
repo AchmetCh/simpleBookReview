@@ -32,7 +32,7 @@ cd simple-book-review
 2. Install dependencies for both the server and client:
 ``` bash
 # For backend
-cd server
+cd backend
 npm install
 
 # For client
