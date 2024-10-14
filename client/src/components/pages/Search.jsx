@@ -1,7 +1,6 @@
 import React, { useState } from "react";
-import {Nav, Container, Button, Form } from "react-bootstrap";
+import {Button, Form } from "react-bootstrap";
 import axios from "axios";
-import { Link } from "react-router-dom";
 import Api from "../../Api";
 const Search = ({setSearchResults}) => {
     const [search, setSearch] = useState("");
