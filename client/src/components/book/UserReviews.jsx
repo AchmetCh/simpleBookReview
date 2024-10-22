@@ -3,6 +3,8 @@ import axios from "axios";
 import { Link } from "react-router-dom";
 import { Container, Card, Button, Row, Col, Pagination } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import { jwtDecode } from "jwt-decode";
 import Api from '../../Api';
 
@@ -10,6 +12,7 @@ const UserReviews = ({ token }) => {
   const [reviews, setReviews] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 4;  // Set 4 items per page
+
 
   let userId = null;
   if (token) {
@@ -33,6 +36,19 @@ const UserReviews = ({ token }) => {
     fetchReviews();
   }, [userId]);
 
+  const handleDelete = async (id) => {
+    try {
+      const response = await axios.delete(`${Api}/book/deletereview/${id}`, {
+        headers: {
+          'Authorization': localStorage.getItem('token')
+          }
+    })
+    setReviews(reviews.filter(review => review._id !== id))
+    toast.success('Review deleted successfully')
+    } catch (error) {
+      console.error(error);
+  }
+}
   // Calculate the reviews for the current page
   const indexOfLastReview = currentPage * itemsPerPage;
   const indexOfFirstReview = indexOfLastReview - itemsPerPage;
@@ -80,9 +96,8 @@ const UserReviews = ({ token }) => {
                     <Link to={`/book/editreview/${review._id}`}>
                       <Button variant="success" className="m-2">Edit</Button>
                     </Link>
-                    <Link to={`/book/bookbyid/${review._id}`}>
-                      <Button variant="danger">Delete</Button>
-                    </Link>
+                      <Button variant="danger" onClick={() => handleDelete(review._id)}>Delete</Button>
+                    
                   </div>
                 </Card.Body>
               </Card>
